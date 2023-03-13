@@ -1,4 +1,11 @@
 # Task Odoo Engineer Efishery
+
+## Live Demo
+In case you have problems during the installation process, you can my live server demo.
+URL: http://103.183.74.21:8069/
+username: tester
+password: tester
+
 ## Requirements
 - Latest version of docker https://www.docker.com/
 ## Installation
