@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "4dcfa8f1-a398-4efa-8743-1ed95934d4e7",
+		"name": "Efishery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21657720"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jsonrpc\":\"2.0\",\n    \"params\":{\n        \"db\": \"efishery\",\n        \"username\": \"garudamalang@gmail.com\",\n        \"password\": \"12345678\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8069/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Data",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhcnVkYW1hbGFuZ0BnbWFpbC5jb20iLCJpc19hZG1pbiI6dHJ1ZX0.ycQpAPDH54FVG93BzHE8qC1ddQrHShdQ7Diu_AWYeII",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8069/fetch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"fetch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Sale Order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhcnVkYW1hbGFuZ0BnbWFpbC5jb20iLCJpc19hZG1pbiI6dHJ1ZX0.ycQpAPDH54FVG93BzHE8qC1ddQrHShdQ7Diu_AWYeII",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jsonrpc\":\"2.0\",\n    \"params\":{\n        \"partner_id\": 3,\n        \"orderline\":[\n            {\n                \"name\":\"Tamiya\",\n                \"id\":1,\n                \"qty\":5,\n                \"price_unit\":500\n            }\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8069/sale-order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"sale-order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sale Order",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhcnVkYW1hbGFuZ0BnbWFpbC5jb20iLCJpc19hZG1pbiI6dHJ1ZX0.ycQpAPDH54FVG93BzHE8qC1ddQrHShdQ7Diu_AWYeII",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8069/sale-order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8069",
+					"path": [
+						"sale-order"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
