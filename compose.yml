@@ -1,0 +1,78 @@
+#versi docker-compose yang digunakan
+version: "3.9"
+services:
+   #Konfigurasi service odoo
+   odoo:
+      #nama image odoo
+      # image: odoo:14.0
+      #nama container dari image web yang dijalankan
+      build: .
+      container_name: odoo14
+      #setting port yg bisa diakses dr host adalah 8069 (kiri)
+      #port 8069 (kanan) adalah port service odoo yang hanya dikenali di 
+      #internal network antar container
+      ports:
+         - 8069:8069
+         - 8072:8072
+      #set environment odoo
+      environment:
+         - HOST=dbefishery
+         - USER=efishery
+         - PASSWORD=efishery123
+      #add volumes untuk external web data, addons & config odoo
+      volumes:
+         - odoo-web-data:/var/lib/odoo
+         - ./odoo-config:/etc/odoo
+         - ./odoo-addons:/mnt/extra-addons
+      #aturan jika container dalam status stop/exit maka akan 
+      #otomatis di restart oleh docker container ini. 
+      restart: always
+      #membutuhkan service lain (db)
+      depends_on:
+         - dbefishery
+   #Konfigurasi db workbench (pgadmin)
+   pgadminefishery:
+      #nama image
+      image: dpage/pgadmin4
+      #nama container dari image web yang dijalankan
+      container_name: pgadminefishery
+      ports:
+         - 90:80
+      environment:
+         - PGADMIN_DEFAULT_EMAIL=demo@efishery.co.id
+         - PGADMIN_DEFAULT_PASSWORD=12345678
+      #aturan jika container dalam status stop/exit maka akan 
+      #otomatis di restart oleh docker container ini. 
+      restart: always
+      #membutuhkan service lain (db)
+      depends_on:
+         - dbefishery
+   dbefishery:
+      image: postgres
+      # Digunakan untuk setting koneksi host di aplikasi webapp.
+      container_name: postgres
+      #persisten volume (tetap), Host : container
+      #sangat penting tidak hanya menggunakan volume dalam container
+      #karena volume yg ada pada container akan hilang saat 
+      #container tersebut di remove.
+      volumes:
+         - postgres_database:/var/lib/postgresql/data/pgdata
+      #setting environment image (lihat docs postgre)          
+      environment:
+         - POSTGRES_DB=postgres
+         - POSTGRES_USER=efishery
+         - POSTGRES_PASSWORD=efishery123
+         - PGDATA=/var/lib/postgresql/data/pgdata
+      restart: always
+# definisikan volume postgres_database & odoo-web-data:, 
+# pastikan!!! di server Deployment sebelum menjalankan 
+# docker-compose build sudah di create dulu Volumenya !!!
+# caranya : docker volume create [nama_volume]  
+volumes:
+  postgres_database:
+#       # setting agar volume (data) tdk dihapus 
+#       # saat docker-compose down
+    external : true
+  odoo-web-data:
+#   odoo-config:
+#   odoo-addons:
