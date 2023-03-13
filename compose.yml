@@ -72,7 +72,7 @@ volumes:
   postgres_database:
 #       # setting agar volume (data) tdk dihapus 
 #       # saat docker-compose down
-    external : true
+   #  external : true
   odoo-web-data:
 #   odoo-config:
 #   odoo-addons:
