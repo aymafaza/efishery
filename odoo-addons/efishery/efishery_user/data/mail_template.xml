@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Slide channel invite feature -->
+        <record id="mail_template_complete_notification" model="mail.template">
+            <field name="name">Channel: Import Data</field>
+            <field name="model_id" ref="model_base_import_import" />
+            <field name="subject">Import has been complete</field>
+            <field name="use_default_to" eval="True"/>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px; font-size: 13px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear User<br/><br/>
+                        Your import has been complete.
+
+                        Kindly check !
+                    </p>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+</odoo>
